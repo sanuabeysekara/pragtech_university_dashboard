@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="wizard_student_attendance_report_form_view" model="ir.ui.view">
+		<field name="name">Student Attendance Report</field>
+		<field name="model">wizard.student.attendance.report</field>
+		<field name="arch" type="xml">
+			<form string="Attendance Report">
+                <group>						
+						<group>
+							<field name="from_date"/>
+							<field name="to_date"/>
+						</group>
+                        <group>
+							<field name="academic_year"/>
+							<field name="student_class"/>
+						</group>
+					</group>
+				<footer>
+                    <button  name="print_item_report" string="Attendance View" class="oe_highlight" type="object"/>
+                    <button  name="print_pdf_report" string="Print Pdf" class="oe_highlight" type="object"/>
+
+					<button string="Cancel" class="oe_link" special="cancel"/>
+				</footer>
+			</form>
+		</field>
+	</record>
+
+    <record id="action_wizard_student_attendance_report" model="ir.actions.act_window">
+		<field name="name">Student Attendance Report</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">wizard.student.attendance.report</field>
+		<field name="view_mode">form</field>
+		<field name="target">new</field>
+	</record>
+	<menuitem id="student_attendance_report_wizard" parent="pragtech_university_dashboard.menu_attendance_root"  name="Student Attendance Report"
+         action="pragtech_university_dashboard.action_wizard_student_attendance_report" sequence="2"/>
+
+</odoo>

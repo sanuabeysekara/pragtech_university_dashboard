@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_completed_assignment_form" model="ir.ui.view">
+            <field name="name">completed.assignment.form</field>
+            <field name="model">completed.assignment</field>
+            <field name="arch" type="xml">
+                <form string="Completed Assignment">
+                    <header>
+                        <button name="validate" string="Validate" type="object" state="submitted" class="oe_highlight"
+                                attrs="{'invisible': [('state', '!=', 'submitted')]}"/>
+                        <field name="state" widget="statusbar" statusbar_visible="submitted,validated"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="assignment_master_id"/>
+                                <field name="completed_date"/>
+                            </group>
+                            <group>
+                                <field name="students_id"/>
+                            </group>
+                            <label for="completed_task_description" class="font-weight-bold"/>
+                            <field name="completed_task_description"/>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="obtained_mark"
+                                       attrs="{'readonly': [('state','=','validated')],
+                                                'required': [('state', '=', 'submitted')]
+                                                }"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                        <field name="activity_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_completed_assignment_tree" model="ir.ui.view">
+            <field name="name">completed.assignment.tree</field>
+            <field name="model">completed.assignment</field>
+            <field name="arch" type="xml">
+                <tree string="Completed Assignments">
+                    <field name="assignment_master_id"/>
+                    <field name="students_id"/>
+                    <field name="completed_date"/>
+                    <field name="obtained_mark"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_view_completed_assignment" model="ir.actions.act_window">
+            <field name="name">Completed Assignments</field>
+            <field name="res_model">completed.assignment</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo>

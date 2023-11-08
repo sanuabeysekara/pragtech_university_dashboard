@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="portal_my_home_class_timetable" name="Show My Timetable" customize_show="True"
+              inherit_id="portal.portal_my_home"
+              priority="44">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Timetable</t>
+                <t t-set="url" t-value="'/my/class_timetable'"/>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="portal_my_class_timetable" name="Timetable">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Timetable</t>
+            </t>
+
+            <t t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th>
+                            <span class="d-none d-md-inline">Timetable Name</span>
+                        </th>
+                        <th>
+                            <span class="d-none d-md-inline">Academic year</span>
+                        </th>
+                        <th>
+                            <span class="d-none d-md-inline">Class</span>
+                        </th>
+                        <th>
+                            <span class="d-none d-md-inline">Class Room</span>
+                        </th>
+                        <th>
+                            <span class="d-none d-md-inline">Timetable Start Date</span>
+                        </th>
+                        <th>
+                            <span class="d-none d-md-inline">Timetable End Date</span>
+                        </th>
+                    </tr>
+                </thead>
+
+                <t t-foreach="values" t-as="rec">
+                    <tr>
+                        <td>
+                            <a t-attf-href="/my/timetable_chart/#{rec.get('rec_id')}">
+                                <t t-esc="rec.get('name')" groups="pragtech_university_dashboard.group_student_user"/>
+                            </a>
+                        </td>
+                        <td>
+                            <t t-esc="rec.get('academic_yr')" groups="pragtech_university_dashboard.group_student_user"/>
+                        </td>
+                        <td>
+                            <t t-esc="rec.get('class')" groups="pragtech_university_dashboard.group_student_user"/>
+                        </td>
+                        <td>
+                            <t t-esc="rec.get('class_room')" groups="pragtech_university_dashboard.group_student_user"/>
+                        </td>
+                        <td>
+                            <t t-esc="rec.get('start_date')" groups="pragtech_university_dashboard.group_student_user"/>
+                        </td>
+                        <td>
+                            <t t-esc="rec.get('end_date')" groups="pragtech_university_dashboard.group_student_user"/>
+                        </td>
+                    </tr>
+                </t>
+            </t>
+        </t>
+
+    </template>
+
+    <template id="portal_my_classroom_timetables" name="Timetable Chart" inherit_id="portal.portal_sidebar"
+              primary="True">
+
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Timetable</t>
+            </t>
+
+            <div class="row">
+
+                <div name="right-upper-side_" class="mb-3 col-12">
+                    <t t-call="portal.portal_table">
+                        <thead>
+                            <tr class="active">
+                                <th>
+                                    <br/>
+                                    <div class="text-center">
+                                        <h3>
+                                            <strong style="color: #421442;">Time Table
+                                            </strong>
+                                        </h3>
+                                    </div>
+                                    <br/>
+                                    <table width="100%">
+                                        <tbody style="font-size:14px;">
+                                            <tr>
+                                                <td>
+                                                    <br/>
+                                                    <b style="color: #421442;">Academic Year:</b>
+                                                    <t t-esc="title_values.get('academic_yr')"
+                                                       groups="pragtech_university_dashboard.group_student_user"/>
+                                                </td>
+                                                <td class="text-left">
+                                                    <br/>
+                                                    <b style="color: #421442;">Class Name:</b>
+                                                    <t t-esc="title_values.get('class')"
+                                                       groups="pragtech_university_dashboard.group_student_user"/>
+                                                </td>
+                                                <td class="text-left">
+                                                    <br/>
+                                                    <b style="color: #421442;">Class Room:</b>
+                                                    <t t-esc="title_values.get('class_room')"
+                                                       groups="pragtech_university_dashboard.group_student_user"/>
+                                                </td>
+                                                <td class="text-left">
+                                                    <br/>
+                                                    <b style="color: #421442;">Timetable Start Date:</b>
+                                                    <t t-esc="title_values.get('start_date')"
+                                                       groups="pragtech_university_dashboard.group_student_user"/>
+                                                    <!--                                                </td>-->
+                                                    <!--                                                <td class="text-left">-->
+                                                    <br/>
+                                                    <b style="color: #421442;">Timetable End Date:</b>
+                                                    <t t-esc="title_values.get('end_date')"
+                                                       groups="pragtech_university_dashboard.group_student_user"/>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <br/>
+                                    <table class="table table-bordered"
+                                        style="background-color:#eeeeee; font-size:14px; font-weight:600;">
+                                        <td style="background-color:#eeeeee; font-size:15px; font-weight:600; color: #421442;">Weeks</td>
+                                        <t t-foreach="periods" t-as="rec">
+                                            <td style="font-size:15px; font-weight:600; color: #421442;">
+                                                <t t-esc="rec.get('name')"
+                                                   groups="pragtech_university_dashboard.group_student_user"/>
+                                            </td>
+                                        </t>
+                                        <tr>
+                                            <td style="background-color:#eeeeee; font-size:15px; font-weight:600; color: #421442;">
+                                                Monday
+                                            </td>
+                                            <t t-foreach="table_monday_values" t-as="rec">
+                                                <td>
+                                                    <t t-esc="rec.get('monday_subjects')"/>
+                                                </td>
+                                            </t>
+                                        </tr>
+                                        <tr>
+                                            <td style="background-color:#eeeeee; font-size:15px; font-weight:600; color: #421442;">
+                                                Tuesday
+                                            </td>
+                                            <t t-foreach="table_tuesday_values" t-as="rec">
+                                                <td>
+                                                    <t t-esc="rec.get('tuesday_subjects')"/>
+                                                </td>
+                                            </t>
+                                        </tr>
+                                        <tr>
+                                            <td style="background-color:#eeeeee; font-size:15px; font-weight:600; color: #421442;">
+                                                Wednesday
+                                            </td>
+                                            <t t-foreach="table_wednesday_values" t-as="rec">
+                                                <td>
+                                                    <t t-esc="rec.get('wednesday_subjects')"/>
+                                                </td>
+                                            </t>
+                                        </tr>
+                                        <tr>
+                                            <td style="background-color:#eeeeee; font-size:15px; font-weight:600; color: #421442;">
+                                                Thursday
+                                            </td>
+                                            <t t-foreach="table_thursday_values" t-as="rec">
+                                                <td>
+                                                    <t t-esc="rec.get('thursday_subjects')"/>
+                                                </td>
+                                            </t>
+                                        </tr>
+                                        <tr>
+                                            <td style="background-color:#eeeeee; font-size:15px; font-weight:600; color: #421442;">
+                                                Friday
+                                            </td>
+                                            <t t-foreach="table_friday_values" t-as="rec">
+                                                <td>
+                                                    <t t-esc="rec.get('friday_subjects')"/>
+                                                </td>
+                                            </t>
+                                        </tr>
+                                        <tr>
+                                            <td style="background-color:#eeeeee; font-size:15px; font-weight:600; color: #421442;">
+                                                Saturday
+                                            </td>
+                                            <t t-foreach="table_saturday_values" t-as="rec">
+                                                <td>
+                                                    <t t-esc="rec.get('saturday_subjects')"/>
+                                                </td>
+                                            </t>
+                                        </tr>
+                                        <tr>
+                                            <td style="background-color:#eeeeee; font-size:15px; font-weight:600; color: #421442;">
+                                                Sunday
+                                            </td>
+                                            <t t-foreach="table_sunday_values" t-as="rec">
+                                                <td>
+                                                    <t t-esc="rec.get('sunday_subjects')"/>
+                                                </td>
+                                            </t>
+                                        </tr>
+                                    </table>
+                                    <br></br>
+                                </th>
+                            </tr>
+                        </thead>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>
+

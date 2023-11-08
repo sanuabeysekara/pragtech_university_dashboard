@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Classrooms -->
+
+        <record id="view_class_rooms_tree" model="ir.ui.view">
+            <field name="name">class.rooms.tree</field>
+            <field name="model">class.rooms</field>
+            <field name="arch" type="xml">
+                <tree string="Classrooms">
+                    <field name="name"/>
+                    <field name="student_class_id"/>
+                    <field name="class_strength"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_class_rooms_form" model="ir.ui.view">
+            <field name="name">class.rooms.form</field>
+            <field name="model">class.rooms</field>
+            <field name="arch" type="xml">
+                <form string="Classrooms">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="student_class_id"/>
+                            </group>
+                            <group>
+                                <field name="class_strength"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_view_class_rooms" model="ir.actions.act_window">
+            <field name="name">Classrooms</field>
+            <field name="res_model">class.rooms</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Add Classrooms
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

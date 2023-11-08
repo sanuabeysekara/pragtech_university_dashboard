@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_marksheet">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <style>
+                        <!-- .table-no-border {
+                            border-collapse: collapse;
+                        } -->
+
+                        .table-no-border td,
+                        .table-no-border tr,
+                        .table-no-border th {
+                            border: none;
+                        }
+                    </style>
+
+                    <div class="page">
+
+                    	<h3><center><strong>Marksheet</strong></center></h3><br/>
+                        <table width="100%" class="table table-bordered table-no-border">
+                            <tr>
+                                <td width="50%" style="text-align:left;font-family:sans-serif;font-size:18px;">
+                                        <span style="text-align:left;"><strong>Exam Name:&#160;</strong></span>
+                                        <span style="text-align:left;" t-field="o.exam_name_id.name"/>
+
+                                </td>
+                                <td width="50%" style="text-align:left;font-family:sans-serif;font-size:18px;">
+                                    <span style="text-align:left;"><strong>Class:&#160;</strong></span>
+                                    <span style="text-align:left;" t-field="o.student_class_id.name"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="50%" style="text-align:left;font-family:sans-serif;font-size:18px;">
+                                    <span style="text-align:left;"><strong>Academic Year:&#160;</strong></span>
+                                    <span style="text-align:left;" t-field="o.student_class_id.name"/>
+                                </td>
+                                <td width="50%" style="text-align:left;font-family:sans-serif;font-size:18px;">
+                                    <span style="text-align:left;"><strong>Class Rooms:&#160;</strong></span>
+                                    <span style="text-align:left;" t-field="o.class_room_id.name"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="50%" style="text-align:left;font-family:sans-serif;font-size:18px;">
+                                    <span style="text-align:left;"><strong>Student:&#160;</strong></span>
+                                    <span style="text-align:left;" t-field="o.student_id.first_name"/>
+                                </td>
+                                <td width="50%" style="text-align:left;font-family:sans-serif;font-size:18px;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="50%" style="text-align:left;font-family:sans-serif;font-size:18px;">
+                                    <span style="text-align:left;"><strong>Total Mark:&#160;</strong></span>
+                                    <span style="text-align:left;" t-field="o.total_exam_marks"/>
+                                </td>
+                                <td width="50%" style="text-align:left;font-family:sans-serif;font-size:18px;">
+                                    <span style="text-align:left;"><strong>Total Pass Marks:&#160;</strong></span>
+                                    <span style="text-align:left;" t-field="o.total_exam_pass_marks"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="50%" style="text-align:left;font-family:sans-serif;font-size:18px;">
+                                    <span style="text-align:left;"><strong>Total Obtained Marks:&#160;</strong></span>
+                                    <span style="text-align:left;" t-field="o.total_obtained_mark"/>
+                                </td>
+                                <td width="50%" style="text-align:left;font-family:sans-serif;font-size:18px;">
+                                    <span style="text-align:left;"><strong>Total Percentage:&#160;</strong></span>
+                                    <span style="text-align:left;" t-field="o.total_obtained_percentage"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="50%" style="text-align:left;font-family:sans-serif;font-size:18px;">
+                                    <span style="text-align:left;"><strong>Result:&#160;</strong></span>
+                                    <span style="text-align:left;" t-field="o.result"/>
+                                </td>
+                                <td width="50%" style="text-align:left;font-family:sans-serif;font-size:18px;">
+                                </td>
+
+                            </tr>
+                        </table><br/>
+
+
+                        <table width="100%"  class="table table-bordered ">
+                            <thead>
+                                <tr>
+                                    <th width="7%" style="text-align:left;font-family:sans-serif;font-size:16px;border:1px solid black;">SI No</th>
+                                    <th width="10%" style="text-align:left;font-family:sans-serif;font-size:16px;border:1px solid black;">Exam</th>
+                                    <th width="12%" style="text-align:left;font-family:sans-serif;font-size:16px;border:1px solid black;">Total Mark</th>
+                                    <th width="13%" style="text-align:center;font-family:sans-serif;font-size:16px;border:1px solid black;">Pass Mark</th>
+                                    <th width="14%" style="text-align:center;font-family:sans-serif;font-size:16px;border:1px solid black;">Obtained Mark</th>
+                                    <th width="10%" style="text-align:center;font-family:sans-serif;font-size:16px;border:1px solid black;">Grade</th>
+                                    <th width="10%" style="text-align:center;font-family:sans-serif;font-size:16px;border:1px solid black;">Percentage</th>
+                                    <th width="13%" style="text-align:right;font-family:sans-serif;font-size:16px;border:1px solid black;">Result Status</th> 
+                                    
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <t t-set="i" t-value="1"/>
+                                <t t-foreach="o.mark_sheet_line_ids" t-as="line">
+                                    <tr>
+                                        <td  style="text-align:left;font-family:sans-serif;font-size:16px;border:1px solid black;">
+                                            <span t-esc="i"/><t t-set="i" t-value="i+1"/>
+                                        </td>
+                                        <td  style="text-align:left;font-family:sans-serif;font-sze:16px;border:1px solid black;">
+                                            <span t-esc="line.exam_details_id.exam_subject_id.name"/>
+                                        </td>
+                                        <td  style="text-align:left;font-family:sans-serif;font-sze:16px;border:1px solid black;">
+                                            <span t-esc="line.marks"/>
+                                        </td>
+                                        <td  style="text-align:left;font-family:sans-serif;font-sze:16px;border:1px solid black;">
+                                            <span t-esc="line.pass_marks"/>
+                                        </td>
+
+                                        <td  style="text-align:left;font-family:sans-serif;font-size:16px;border:1px solid black;">
+                                            <span t-esc="line.obtained_mark"/>
+                                        </td>
+                                        <td  style="text-align:left;font-family:sans-serif;font-size:16px;border:1px solid black;">
+                                            <span t-esc="line.grade"/>
+                                        </td>
+
+                                        <td  style="text-align:left;font-family:sans-serif;font-size:16px;border:1px solid black;">
+                                            <span t-esc="line.percentage" />
+                                        </td>
+                                        
+                                        <td  style="text-align:left;font-family:sans-serif;font-size:16px;border:1px solid black;">
+                                            <span t-esc="line.result_status" />
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                            
+
+                        </table><br/><br/>
+
+                    </div>
+                        <xpath expr="//div[@class='footer o_standard_footer']" position="replace">
+                            <div class="footer o_standard_footer">
+                                <div class="text-center" style="border-top: 1px solid black;">
+                                    <div t-if="report_type == 'pdf'" class="text-muted">
+                                    Page:
+                                    <span class="page"/>
+                                    /
+                                    <span class="topage"/>
+                                </div>
+                                 </div>
+                            </div>
+                        </xpath>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

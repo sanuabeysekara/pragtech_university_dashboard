@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="portal_my_home_exams" name="Show My Exams" customize_show="True" inherit_id="portal.portal_my_home"
+              priority="44">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">MarkSheet</t>
+                <t t-set="url" t-value="'/my/exams'"/>
+            </t>
+        </xpath>
+    </template>
+
+
+    <template id="portal_my_exams" name="Exams">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">MarkSheet</t>
+            </t>
+
+            <t t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th>
+                            <span class='d-none d-md-inline'>Exams</span>
+                        </th>
+                        <th>
+                            <span class="d-none d-md-inline">Academic year</span>
+                        </th>
+                        <th>
+                            <span class="d-none d-md-inline">Class</span>
+                        </th>
+                    </tr>
+                </thead>
+
+                <t t-foreach="values" t-as="rec">
+                    <tr>
+                        <td>
+                            <a t-attf-href="/my/mark_sheet/#{rec.get('exam_id')}">
+                                <t t-esc="rec.get('exams')" groups="pragtech_university_dashboard.group_student_user"/>
+                            </a>
+                        </td>
+                        <td>
+                            <t t-esc="rec.get('academic_yr')" groups="pragtech_university_dashboard.group_student_user"/>
+                        </td>
+                        <td>
+                            <t t-esc="rec.get('class')" groups="pragtech_university_dashboard.group_student_user"/>
+                        </td>
+                    </tr>
+                </t>
+            </t>
+        </t>
+
+    </template>
+
+</odoo>
+

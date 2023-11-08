@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_grade_master_tree" model="ir.ui.view">
+            <field name="name">grade.master.tree</field>
+            <field name="model">grade.master</field>
+            <field name="arch" type="xml">
+                <tree string="Grade Master" editable="bottom" >
+                    <field name="minimum_mark"/>
+                    <field name="maximum_mark"/>
+                    <field name="grade"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_view_grade_master" model="ir.actions.act_window">
+            <field name="name">Grade Master</field>
+            <field name="res_model">grade.master</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_admission_enroll_mechanism_form" model="ir.ui.view">
+            <field name="name">enroll.mechanism.form</field>
+            <field name="model">enroll.mechanism</field>
+            <field name="arch" type="xml">
+                <form string="Admission Enroll Mechanism">
+                    <header>
+                        <button string="Enroll" class="oe_highlight"
+                                type="object" name="action_create_student_master"
+                                attrs="{'invisible': [('state', '=', 'enrolled')]}"
+                        />
+                        <field name="state" widget="statusbar" statusbar_visible="draft,enrolled"/>
+                    </header>
+                    <sheet>
+                        <field name="image_1920" widget='image' class="oe_right oe_avatar"/>
+                        <div class="oe_title">
+                            <h1>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <field name="first_name" required="1" placeholder="Student First Name"
+                                                   style="padding-right:10px"/>
+                                        </td>
+                                        <td>
+                                            <field name="last_name" placeholder="Last Name"
+                                                   style="padding-right:10px"/>
+                                        </td>
+<!--                                        <td>-->
+<!--                                            <field name="name"/>-->
+<!--                                        </td>-->
+                                    </tr>
+                                </table>
+                            </h1>
+                        </div>
+                        <notebook>
+                            <page name="enrollment_data" string="Enrollment Data">
+                                <group>
+                                    <group>
+                                        <field name="admission_master_id"
+                                               attrs="{'readonly' : [('state', '=', 'enrolled')]}"/>
+                                        <field name="enrollment_date"
+                                               attrs="{'readonly' : [('state', '=', 'enrolled')]}"/>
+                                        <field name="enrollment_no"/>
+                                    </group>
+                                    <group>
+                                        <field name="academic_year_id"/>
+                                        <field name="student_class_id"
+                                               attrs="{'readonly' : [('state', '=', 'enrolled')]}"/>
+                                    </group>
+                                </group>
+                                <group string="Previous History">
+                                    <group>
+                                        <field name="previous_academy"
+                                               attrs="{'readonly' : [('state', '=', 'enrolled')]}"/>
+                                        <field name="previous_class"
+                                               attrs="{'readonly' : [('state', '=', 'enrolled')]}"/>
+                                    </group>
+                                    <group>
+                                        <field name="previous_result"
+                                               attrs="{'readonly' : [('state', '=', 'enrolled')]}"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Personal Details">
+                                <group>
+                                    <group>
+                                        <field name="date_of_birth"/>
+                                        <field name="gender"/>
+                                        <field name="blood_gp"/>
+                                    </group>
+                                    <group>
+                                        <field name="email"/>
+                                        <field name="mobile"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Guardian Details">
+                                <group>
+                                    <group>
+                                        <field name="guardian_name"/>
+                                        <field name="student_relationship"/>
+                                        <field name="user_id"/>
+                                        <field name="student_user_id"/>
+                                    </group>
+                                    <group>
+                                        <field name="guardian_email"/>
+                                        <field name="guardian_mobile"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_admission_enroll_mechanism_tree" model="ir.ui.view">
+            <field name="name">enroll.mechanism.tree</field>
+            <field name="model">enroll.mechanism</field>
+            <field name="arch" type="xml">
+                <tree string="Admission Enroll Mechanism">
+                    <field name="first_name"/>
+                    <field name="last_name"/>
+                    <field name="date_of_birth"/>
+                    <field name="mobile"/>
+                    <field name="admission_master_id"/>
+                    <field name="enrollment_no"/>
+                    <field name="enrollment_date"/>
+                    <field name="student_class_id"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_view_enroll_mechanism" model="ir.actions.act_window">
+            <field name="name">Enrollment</field>
+            <field name="res_model">enroll.mechanism</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo>

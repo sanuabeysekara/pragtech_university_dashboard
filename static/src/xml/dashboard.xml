@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="pragtech_university_dashboard.edu_dashboard_template">
+
+        <div class="container-fluid py-5">
+            <div class="col-xs-12 col-md-12">
+                <br/>
+                <center>
+                    <h1 style="color: #71639e;">University Dashboard</h1>
+                </center>
+            </div>
+            <br/>
+            <br/>
+            <div class="row">
+                <div class="col-sm-12 col-md-6 col-lg-3 admissions" id="admission">
+                   <div class="dashboard-card dashboard-card--border-top dashboard-card--border-top-black"
+                        style="background-color: #f2f2f2;justify-content: center !important;padding: 60px;">
+                        <div class="dashboard-card__details">
+                            <p class="text-center mb0 font-weight-bold">
+                                 <img src="/pragtech_university_dashboard/static/src/img/student-icon-admission.png"
+                                      style="width: 55px;"/>
+                                <br/>
+                            </p>
+                            <p class="text-center mb0 dashboard-card__title" style="color: #71639e;">
+                                Admissions
+                            </p>
+                        </div>
+                    </div>
+               </div>
+
+                <div class="col-sm-12 col-md-6 col-lg-3 students" id="students">
+                    <div class="dashboard-card dashboard-card--border-top dashboard-card--border-top-red"
+                         style="background-color: #f2f2f2;justify-content: center !important;padding: 60px;">
+                        <div class="dashboard-card__details">
+                              <p class="text-center mb0 font-weight-bold">
+                                <img src="/pragtech_university_dashboard/static/src/img/students.png"
+                                     style="width: 55px;"/>
+                              <br/>
+                            </p>
+                            <p class="text-center mb0 dashboard-card__title" style="color: #71639e;">
+                                Students
+                            </p>
+                        </div>
+                  </div>
+                </div>
+
+                <div class="col-sm-12 col-md-6 col-lg-3 teachers" id="teachers">
+                    <div class="dashboard-card dashboard-card--border-top dashboard-card--border-top-green"
+                         style="background-color: #f2f2f2;justify-content: center !important;padding: 60px;">
+                        <div class="dashboard-card__details">
+                            <p class="text-center mb0 font-weight-bold">
+                              <img src="/pragtech_university_dashboard/static/src/img/teacher.png"
+                                   style="width: 50px;"/>
+                                <br/>
+                            </p>
+                            <p class="text-center mb0 dashboard-card__title" style="color: #71639e;">
+                                Teachers
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-6 col-lg-3 timetable" id="timetable">
+                    <div class="dashboard-card dashboard-card--border-top dashboard-card--border-top-blue"
+                         style="background-color: #f2f2f2;justify-content: center !important;padding: 60px;">
+                        <div class="dashboard-card__details">
+                             <p class="text-center mb0 font-weight-bold">
+                                <img src="/pragtech_university_dashboard/static/src/img/timetable.png"
+                                   style="width: 55px;"/>
+                                 <br/>
+                            </p>
+                            <p class="text-center mb0 dashboard-card__title" style="color: #71639e;">
+                                Timetables
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-6 col-lg-3 attendance" id="attendance">
+                    <div class="dashboard-card dashboard-card--border-top dashboard-card--border-top-blue"
+                         style="background-color: #f2f2f2;justify-content: center !important;padding: 60px;">
+                        <div class="dashboard-card__details">
+                            <p class="text-center mb0 font-weight-bold">
+                            <img src="/pragtech_university_dashboard/static/src/img/attendance1.png"
+                               style="width: 55px;"/>
+                            <br/>
+                            </p>
+                            <p class="text-center mb0 dashboard-card__title" style="color: #71639e;">
+                                Attendance
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-6 col-lg-3 exam" id="exam">
+                    <div class="dashboard-card dashboard-card--border-top dashboard-card--border-top-pink"
+                         style="background-color: #f2f2f2;justify-content: center !important;padding: 60px;">
+                        <div class="dashboard-card__details">
+                             <p class="text-center mb0 font-weight-bold">
+                            <img src="/pragtech_university_dashboard/static/src/img/exam.png"
+                               style="width: 55px;"/>
+                                 <br/>
+                            </p>
+                            <p class="text-center mb0 dashboard-card__title" style="color: #71639e;">
+                                Exams
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-6 col-lg-3 fees" id="exam">
+                    <div class="dashboard-card dashboard-card--border-top dashboard-card--border-top-pink"
+                         style="background-color: #f2f2f2;justify-content: center !important;padding: 60px;">
+                        <div class="dashboard-card__details">
+                             <p class="text-center mb0 font-weight-bold">
+                            <img src="/pragtech_university_dashboard/static/src/img/fees.png"
+                               style="width: 55px;" />
+                                 <br/>
+                            </p>
+                            <p class="text-center mb0 dashboard-card__title" style="color: #71639e;">
+                                Fees
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </t>
+</templates>

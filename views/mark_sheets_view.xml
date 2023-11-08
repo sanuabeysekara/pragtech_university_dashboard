@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_mark_sheet_master_form" model="ir.ui.view">
+            <field name="name">mark.sheet.form</field>
+            <field name="model">mark.sheet</field>
+            <field name="arch" type="xml">
+                <form string="Mark Sheet">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="exam_name_id"/>
+                                <field name="academic_year_id"/>
+                            </group>
+                            <group>
+                                <field name="student_class_id"/>
+                                <field name="class_room_id"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="student_id"/>
+                            </group>
+                            <group></group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="total_exam_marks"/>
+                                <field name="total_obtained_mark"/>
+                                <field name="result"/>
+                            </group>
+                            <group>
+                                <field name="total_exam_pass_marks"/>
+                                <field name="total_obtained_percentage"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Mark sheets">
+                                <field name="mark_sheet_line_ids" nolabel="1">
+                                    <tree editable="bottom">
+                                        <field name="inv_mark_sheet_id" invisible="1"/>
+                                        <field name="exam_details_id"/>
+                                        <field name="marks"/>
+                                        <field name="pass_marks"/>
+                                        <field name="obtained_mark"/>
+                                        <field name="grade"/>
+                                        <field name="percentage"/>
+                                        <field name="result_status"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_mark_sheet_master_tree" model="ir.ui.view">
+            <field name="name">mark.sheet.tree</field>
+            <field name="model">mark.sheet</field>
+            <field name="arch" type="xml">
+                <tree string="Mark Sheet">
+                    <field name="exam_name_id"/>
+                    <field name="student_id"/>
+                    <field name="academic_year_id"/>
+                    <field name="student_class_id"/>
+                    <field name="class_room_id"/>
+                    <field name="total_exam_marks"/>
+                    <field name="total_exam_pass_marks"/>
+                    <field name="total_obtained_mark"/>
+                    <field name="total_obtained_percentage"/>
+                    <field name="result"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_view_exam_mark_sheets" model="ir.actions.act_window">
+            <field name="name">Mark Sheets</field>
+            <field name="res_model">mark.sheet</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo>

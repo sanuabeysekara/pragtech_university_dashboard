@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+        <!-- 'Create user' in action dropdown -->
+        <record id="action_create_user" model="ir.actions.server">
+            <field name="name">Create User</field>
+            <field name="model_id" ref="model_student_master"/>
+            <field name="binding_model_id" ref="pragtech_university_dashboard.model_student_master"/>
+            <field name="state">code</field>
+            <field name="code">record.create_portal_user()</field>
+        </record>
+
+         <!-- Search View -->
+
+<!--        <record id="view_academic_students_search" model="ir.ui.view">-->
+<!--            <field name="name">student.master.search</field>-->
+<!--            <field name="model">student.master</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <search string="Student">-->
+<!--&lt;!&ndash;                    <field name="name"/>&ndash;&gt;-->
+<!--                    <newline/>-->
+<!--                    <group expand="0" string="Group By...">-->
+<!--                        <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>-->
+<!--                    </group>-->
+<!--                </search>-->
+<!--            </field>-->
+<!--        </record>-->
+
+        <record id="view_academic_students_kanban" model="ir.ui.view">
+            <field name="name">student.master.kanban</field>
+            <field name="model">student.master</field>
+            <field name="arch" type="xml">
+                <kanban class="o_res_partner_kanban">
+                    <field name="id"/>
+                    <field name="image_1920"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+                                <div class="o_kanban_image">
+                                    <div>
+                                        <t t-if="record.image_1920.raw_value">
+                                            <img t-att-src="kanban_image('student.master', 'image_1920', record.id.raw_value)"
+                                                 alt="" class="o_image_64_cover rounded-circle"/>
+                                        </t>
+                                        <t t-else="">
+                                            <img t-att-src='_s + "/base/static/img/avatar.png"' alt=""/>
+                                        </t>
+                                    </div>
+                                </div>
+                                <div class="oe_kanban_details">
+                                    <ul>
+                                        <h4>
+                                            <a type="open">
+                                                <field name="first_name"/>
+                                            </a>
+                                        </h4>
+                                        <li>
+                                            <field name="gender"/>
+                                        </li>
+                                        <li>
+                                            <field name="date_of_birth"/>
+                                        </li>
+                                        <li>
+                                            <field name="mobile"/>
+                                        </li>
+                                        <li>
+                                            <field name="email"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="view_academic_students_tree" model="ir.ui.view">
+            <field name="name">student.master.tree</field>
+            <field name="model">student.master</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Student">
+                    <!--                    <field name="title"/>-->
+                    <field name="first_name"/>
+                    <field name="last_name"/>
+                    <field name="mobile"/>
+                    <field name="country_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_students_form" model="ir.ui.view">
+            <field name="name">student.master.form</field>
+            <field name="model">student.master</field>
+            <field name="arch" type="xml">
+                <form string="Student">
+                    <sheet>
+                        <field name="active" invisible="1"/>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
+                                attrs="{'invisible': [('active', '=', True)]}"
+                        />
+                        <field name="image_1920" widget='image' class="oe_right oe_avatar"/>
+                        <div class="oe_title">
+                            <h1>
+                               <field name="name" readonly="1"/>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <field name="first_name" required="1" placeholder="First Name"
+                                                   style="padding-right:10px"/>
+                                        </td>
+                                        <td>
+                                            <field name="last_name" placeholder="Last Name"
+                                                   style="padding-right:10px"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </h1>
+                        </div>
+                        <notebook>
+                            <page name="personal_details" string="Personal Details">
+                                <group>
+                                    <group>
+                                        <field name="date_of_birth"/>
+                                        <field name="gender"/>
+                                        <field name="blood_gp"/>
+                                        <field name="email"/>
+                                        <field name="visa_details"/>
+                                    </group>
+                                    <group>
+                                        <field name="mobile"/>
+                                        <field name="user_id"/>
+                                       <field name="partner_id" required="0" readonly="1"/>
+<!--                                        <field name="category_id" widget="many2many_tags"/>-->
+                                    </group>
+                                </group>
+                                <group string="Address" name="address">
+<!--                                    <label for="type"/>-->
+<!--                                    <div name="div_type">-->
+<!--                                        <field class="oe_inline" name="type"/>-->
+<!--                                    </div>-->
+                                    <label for="street" string="Address"/>
+                                    <div name="div_address">
+                                        <field name="street" placeholder="Street..."/>
+                                        <field name="street2" placeholder="Street2"/>
+                                        <div class="address_format">
+                                            <field name="city" placeholder="City" style="width: 40%%"/>
+                                            <field name="state_id" class="oe_no_button" placeholder="State"
+                                                   style="width: 37%%" options='{"no_open": True}'/>
+                                            <field name="zip" placeholder="ZIP" style="width: 20%%"/>
+                                        </div>
+                                        <field name="country_id"
+                                               placeholder="Country" class="oe_no_button"
+                                               options='{"no_open": True}'/>
+                                    </div>
+                                </group>
+                            </page>
+                            <page string="Enrolled Details"
+                                  attrs="{'invisible': [('admission_master_id', '=', False)]}">
+                                <group>
+                                    <group>
+                                        <field name="admission_master_id" readonly="1"/>
+                                        <field name="enrollment_no" readonly="1"/>
+                                        <field name="enrollment_date" readonly="1"/>
+                                    </group>
+                                    <group string="Previous History">
+                                        <field name="previous_academy" readonly="1"/>
+                                        <field name="previous_class" readonly="1"/>
+                                        <field name="previous_result" readonly="1"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Guardians">
+                                <group>
+                                    <group>
+                                        <field name="guardian_name"/>
+                                        <field name="student_relationship"/>
+                                        <field name="guardian_user_id"/>
+                                        <field name="guardian_partner_id"/>
+                                    </group>
+                                    <group>
+                                        <field name="guardian_email"/>
+                                        <field name="guardian_mobile"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Class Promotions">
+                                <field name="students_class_ids">
+                                    <tree string="Classes Data" editable="bottom">
+                                        <field name="academic_year_id"/>
+                                        <field name="student_class_id"/>
+                                        <field name="class_room_id"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Fees History" groups="pragtech_university_dashboard.group_admin_user">
+                                    <field name="fees_history_ids" nolabel="1" readonly="1">
+                                        <tree string="Fees Data">
+                                            <field name="fee_id" readonly="1"/>
+                                            <field name="fee_amount" readonly="1"/>
+                                            <field name="state" readonly="1"/>
+                                            <field name="payment_state" readonly="1"/>
+                                        </tree>
+                                    </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+<!--                        <field name="activity_ids" widget="mail_activity"/>-->
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_view_student_master" model="ir.actions.act_window">
+            <field name="name">Students</field>
+            <field name="res_model">student.master</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Add a new Student
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+     <record id="marksheet_report_pdf" model="ir.actions.report">
+            <field name="name">Marksheet Report</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="model">mark.sheet</field>
+            <field name="report_name">pragtech_university_dashboard.report_marksheet</field>
+            <field name="report_file">pragtech_university_dashboard.report_marksheet</field>
+        </record>
+
+        <record id="attendance_report_pdf" model="ir.actions.report">
+            <field name="name">Attendance Report</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="model">students.attendance</field>
+            <field name="report_name">pragtech_university_dashboard.report_attendance</field>
+            <field name="report_file">pragtech_university_dashboard.report_attendance</field>
+        </record>
+
+
+
+         <record id="action_attendance_pdf" model="ir.actions.report">
+            <field name="name">Student Attendance Report</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="model">wizard.student.attendance.report</field>
+            <field name="report_name">pragtech_university_dashboard.report_student_attendance</field>
+            <field name="report_file">pragtech_university_dashboard.report_student_attendance</field>
+        </record>
+    
+</odoo>
+

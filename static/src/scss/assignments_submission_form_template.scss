@@ -1,0 +1,14 @@
+.o_text_box, {
+    outline: none;
+    border: 0px;
+    border-bottom: 1px solid #35979c;
+    &:focus {
+        box-shadow: none;
+    }
+}
+
+.text-break {
+    outline: none;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+}

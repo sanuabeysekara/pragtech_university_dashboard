@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Root Menu -->
+
+        <menuitem name="University Dashboard"
+                  id="menu_dashboard_root"
+                  sequence="6"
+                  web_icon="pragtech_university_dashboard,static/description/icon.png"/>
+
+        <!-- Dashboard Menu -->
+        <menuitem name="My Dashboard"
+                  id="sub_menu_dashboard"
+                  parent="menu_dashboard_root"
+                  sequence="1"
+                  action="action_dashboard"/>
+
+        <!-- Admission Menu -->
+        <menuitem
+                id="menu_admission_root"
+                name="Admission"
+                parent="menu_dashboard_root"
+                sequence="10"
+        />
+        <menuitem
+                id="menu_admission_master"
+                name="Admission Master"
+                parent="menu_admission_root"
+                sequence="1"
+                action="action_view_admission_master"/>
+
+        <menuitem
+                id="menu_admission_enroll_mechanism"
+                name="Enroll Mechanism"
+                parent="menu_admission_root"
+                sequence="2"
+                action="action_view_enroll_mechanism"/>
+
+        <!-- Student Menu -->
+        <menuitem
+                id="menu_student_root"
+                name="Students"
+                parent="menu_dashboard_root"
+                sequence="20"
+        />
+        <menuitem
+                id="menu_student_master"
+                name="Student Master"
+                parent="menu_student_root"
+                sequence="1"
+                action="action_view_student_master"/>
+
+        <!--         Teachers Menu -->
+        <menuitem
+                id="menu_teacher_root"
+                name="Teacher"
+                parent="menu_dashboard_root"
+                sequence="30"
+        />
+        <menuitem
+                id="menu_teacher"
+                name="Teacher Master"
+                parent="menu_teacher_root"
+                sequence="1"
+                action="action_view_teachers"/>
+
+        <!-- Guardian Menu -->
+
+        <menuitem
+                id="menu_guardian_root"
+                name="Guardian"
+                parent="menu_dashboard_root"
+                sequence="20"
+        />
+        <menuitem
+                id="menu_guardian_master"
+                name="Guardian Master"
+                parent="menu_guardian_root"
+                sequence="1"
+                action="action_view_guardian_master"/>
+
+        <!-- Time Tables Menu -->
+
+        <menuitem
+                id="menu_timetables_root"
+                name="Timetables"
+                parent="menu_dashboard_root"
+                sequence="40"/>
+
+        <menuitem
+                id="menu_timetables_create_timetable"
+                name="Class Timetable"
+                parent="menu_timetables_root"
+                sequence="2"
+                action="action_view_create_timetable"/>
+
+        <menuitem
+                id="menu_conf_timetable_head"
+                name="Timetable Configuration"
+                parent="menu_timetables_root"
+                sequence="20"/>
+
+        <menuitem
+                id="menu_conf_timetable_period_time"
+                name="Timetable Time Period"
+                parent="menu_conf_timetable_head"
+                sequence="2"
+                action="action_view_timetable_period_time"
+        />
+
+        <!--         Attendance Menu -->
+        <menuitem
+                id="menu_attendance_root"
+                name="Attendance"
+                parent="menu_dashboard_root"
+                sequence="50"
+        />
+        <menuitem
+                id="menu_students_attendance"
+                name="Students Class Attendance"
+                parent="menu_attendance_root"
+                sequence="1"
+                action="action_view_students_attendance"/>
+
+   
+
+
+        <!--         Exam Menu -->
+        <menuitem
+                id="menu_exams_root"
+                name="Exams"
+                parent="menu_dashboard_root"
+                sequence="70"
+        />
+
+        <menuitem
+                id="menu_exam_master"
+                name="Exam Master"
+                parent="menu_exams_root"
+                sequence="1"
+                action="action_view_exam_master"/>
+
+        <menuitem
+                id="menu_exam_attendance"
+                name="Exam Attendance"
+                parent="menu_exams_root"
+                sequence="2"
+                action="action_view_exam_attendance"/>
+
+        <menuitem
+                id="menu_exam_mark_sheets"
+                name="Mark sheets"
+                parent="menu_exams_root"
+                sequence="3"
+                action="action_view_exam_mark_sheets"/>
+
+        <menuitem
+                id="menu_conf_exam_head"
+                name="Exam Configuration"
+                parent="menu_exams_root"
+                sequence="50"/>
+
+        <menuitem
+                id="menu_conf_grade"
+                name="Grade Master"
+                parent="menu_conf_exam_head"
+                sequence="51"
+                action="action_view_grade_master"
+        />
+
+        <!--  Fees  -->
+        <menuitem
+                id="menu_fees_root"
+                name="Fees"
+                parent="menu_dashboard_root"
+                sequence="80"
+        />
+        <menuitem
+                id="menu_fees_payment"
+                name="Fees Payment"
+                parent="menu_fees_root"
+                sequence="1"
+                action="action_view_fees_payment"
+                groups="group_admin_user"/>
+
+
+        <!-- Conf Menu -->
+        <menuitem
+                id="menu_conf"
+                name="Configuration"
+                parent="menu_dashboard_root"
+                sequence="1800"/>
+
+        <menuitem
+                id="menu_conf_academic_yr"
+                name="Academic Year"
+                parent="menu_conf"
+                sequence="2"
+                action="action_view_academic_year"/>
+
+        <!-- Conf sub menu Class -->
+
+        <menuitem
+                id="menu_conf_class_head"
+                name="Class Management"
+                parent="menu_conf"
+                sequence="10"/>
+
+        <menuitem
+                id="menu_conf_class_subjects"
+                name="Classes And Subjects"
+                parent="menu_conf_class_head"
+                sequence="13"
+                action="action_view_subjects"
+        />
+
+        <menuitem
+                id="menu_conf_class_rooms"
+                name="Class Rooms"
+                parent="menu_conf_class_head"
+                sequence="15"
+                action="action_view_class_rooms"
+        />
+
+    </data>
+</odoo>

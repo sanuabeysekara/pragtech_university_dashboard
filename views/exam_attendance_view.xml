@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_exam_attendance_form" model="ir.ui.view">
+            <field name="name">exam.attendance.form</field>
+            <field name="model">exam.attendance</field>
+            <field name="arch" type="xml">
+                <form string="Exam Attendance">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="exam_name_id"/>
+                                <field name="exam_details_id"/>
+                                <field name="exam_hall" widget="many2many_tags"/>
+                                <field name="exam_start_date"/>
+                            </group>
+                            <group>
+                                <field name="academic_year_id"/>
+                                <field name="student_class_id"/>
+                                <field name="class_room_id"/>
+                                <field name="exam_end_date"/>
+                            </group>
+                        </group>
+                        <notebook>
+                         <page string="Exam Attendances">
+                            <field name="exam_attendance_ids" nolabel="1">
+                                <tree string="Exam Attendance" editable="bottom">
+                                    <field name="inv_attendance_id" invisible="1"/>
+                                    <field name="student_id"/>
+                                    <field name="exam_presented"/>
+                                    <field name="exam_absented"/>
+                                    <field name="exam_notes"/>
+                                </tree>
+                            </field>
+                        </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_exam_attendance_tree" model="ir.ui.view">
+            <field name="name">exam.attendance.tree</field>
+            <field name="model">exam.attendance</field>
+            <field name="arch" type="xml">
+                <tree string="Exam Attendance">
+                    <field name="exam_name_id"/>
+                    <field name="exam_details_id"/>
+                    <field name="academic_year_id"/>
+                    <field name="student_class_id"/>
+                    <field name="class_room_id"/>
+                    <field name="exam_hall"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_view_exam_attendance" model="ir.actions.act_window">
+            <field name="name">Exam Attendance</field>
+            <field name="res_model">exam.attendance</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo>

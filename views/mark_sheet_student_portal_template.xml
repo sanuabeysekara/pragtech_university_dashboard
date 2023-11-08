@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="portal_my_mark_sheet" name="Mark Sheet" inherit_id="portal.portal_sidebar" primary="True">
+
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Mark Sheet</t>
+            </t>
+
+            <div class="row">
+
+                <div name="right-upper-side_" class="mb-3 col-12">
+                    <t t-call="portal.portal_table">
+                        <thead>
+                            <tr class="active">
+                                <th>
+                                    <br/>
+                                    <div class="text-center">
+                                        <h3>
+                                            <strong style="color: #421442;">MarkSheet
+                                            </strong>
+                                        </h3>
+                                    </div>
+                                    <br/>
+                                    <table width="100%">
+                                        <tbody style="font-size:14px;">
+                                            <tr>
+                                                <td>
+                                                    <b style="color: #421442;">Student Name:</b>
+                                                    <t t-esc="marks.get('student_name')"
+                                                       groups="pragtech_university_dashboard.group_student_user"/>
+                                                </td>
+                                                <td class="text-left">
+                                                    <br/>
+                                                    <b style="color: #421442;">Class:</b>
+                                                     <t t-esc="marks.get('class')"
+                                                       groups="pragtech_university_dashboard.group_student_user"/>
+                                                </td>
+                                                <td class="text-left">
+                                                    <br/>
+                                                    <b style="color: #421442;">Exam Name:</b>
+                                                     <t t-esc="marks.get('exams')"
+                                                       groups="pragtech_university_dashboard.group_student_user"/>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <br/>
+                                    <table class="table table-bordered"
+                                           style="background-color:#eeeeee; font-size:14px; font-weight:600;">
+                                        <thead class="text-center">
+                                            <th class="text-center" style="color: #421442;">Subject</th>
+                                            <th class="text-center" style="color: #421442;">Total Marks</th>
+                                            <th class="text-center" style="color: #421442;">Passing Marks</th>
+                                            <th class="text-center" style="color: #421442;">Obtained Marks</th>
+                                            <th class="text-center" style="color: #421442;">Grade</th>
+                                            <th class="text-center" style="color: #421442;">Percentage</th>
+                                            <th class="text-center" style="color: #421442;">Result</th>
+                                        </thead>
+
+                                        <tbody class="text-left" style="font-size:12px;">
+                                            <t t-foreach="values" t-as="rec">
+                                                <tr>
+                                                    <td class="text-center">
+                                                        <t t-esc="rec.get('exam_sub')"
+                                                           groups="pragtech_university_dashboard.group_student_user"/>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <t t-esc="rec.get('marks')"
+                                                           groups="pragtech_university_dashboard.group_student_user"/>
+                                                    </td>
+                                                    <td class="text-right">
+                                                        <t t-esc="rec.get('pass_marks')"
+                                                           groups="pragtech_university_dashboard.group_student_user"/>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <t t-esc="rec.get('obtained_mark')"
+                                                           groups="pragtech_university_dashboard.group_student_user"/>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <t t-esc="rec.get('grade')"
+                                                           groups="pragtech_university_dashboard.group_student_user"/>
+                                                    </td>
+                                                    <td class="text-right">
+                                                        <t t-esc="rec.get('percentage')"
+                                                           groups="pragtech_university_dashboard.group_student_user"/>
+                                                    </td>
+                                                    <td class="text-right">
+                                                        <t t-esc="rec.get('result_status')"
+                                                           groups="pragtech_university_dashboard.group_student_user"/>
+                                                    </td>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                    </table>
+                                    <br></br>
+                                    <table width="100%" class="table table-bordered"
+                                           style="background-color:#eeeeee; font-size:14px; font-weight:600;">
+                                        <thead class="text-center">
+                                            <th class="text-center" style="color: #421442;">Total Pass Marks</th>
+                                            <th class="text-center" style="color: #421442;">Total Obtained Marks /
+                                                <br/>
+                                                Total Marks
+                                            </th>
+                                            <th class="text-center" style="color: #421442;">Total Percentage</th>
+                                            <th class="text-center" style="color: #421442;">Result</th>
+                                        </thead>
+
+                                        <tbody class="text-left" style="font-size:12px;">
+                                            <tr>
+                                                <td class="text-center">
+                                                    <t t-esc="marks.get('total_exam_pass_marks')"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <t t-esc="marks.get('total_obtained_mark')"
+                                                       groups="pragtech_university_dashboard.group_student_user"/>
+                                                    /
+                                                    <t t-esc="marks.get('total_exam_marks')"
+                                                       groups="pragtech_university_dashboard.group_student_user"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <t t-esc="marks.get('total_obtained_percentage')"
+                                                       groups="pragtech_university_dashboard.group_student_user"/>
+                                                </td>
+                                                <td class="text-center">
+                                                    <t t-esc="marks.get('result')"
+                                                       groups="pragtech_university_dashboard.group_student_user"/>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </th>
+                            </tr>
+                        </thead>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </template>
+
+</odoo>

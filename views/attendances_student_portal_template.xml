@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="portal_my_home_attendances" name="Show My Attendances" customize_show="True"
+              inherit_id="portal.portal_my_home"
+              priority="43">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Attendances</t>
+                <t t-set="url" t-value="'/my/attendances'"/>
+            </t>
+        </xpath>
+    </template>
+
+
+    <template id="portal_my_attendances" name="Attendances">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Attendances</t>
+            </t>
+
+            <t t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th>
+                            <span class='d-none d-md-inline'>Students</span>
+                        </th>
+                        <th>
+                            <span class='d-none d-md-inline'>Date</span>
+                        </th>
+                        <th>
+                            <span class='d-none d-md-inline'>Class</span>
+                        </th>
+                        <th>
+                            <span class='d-none d-md-inline'>Half Day</span>
+                        </th>
+                        <th class="text-right">Present</th>
+                        <th class="text-right">Absent</th>
+                        <th class="text-right">Remarks</th>
+                    </tr>
+                </thead>
+
+                <t t-foreach="values" t-as="rec">
+                    <tr>
+                        <td t-if="rec.get('students')">
+                            <t t-esc="rec.get('students')"/>
+                        </td>
+                        <td>
+                            <t t-esc="rec.get('date')"/>
+                        </td>
+                        <td>
+                            <t t-esc="rec.get('class')"/>
+                        </td>
+                        <td>
+                            <t t-esc="rec.get('half_day')"/>
+                        </td>
+
+                        <td class="text-right">
+                            <t t-esc="rec.get('presented')"/>
+                        </td>
+                        <td class="text-right">
+                            <t t-esc="rec.get('absented')"/>
+                        </td>
+                        <td class="text-right">
+                            <t t-esc="rec.get('notes')"/>
+                        </td>
+                    </tr>
+                </t>
+            </t>
+        </t>
+
+    </template>
+
+</odoo>
+

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_assignment_master_form" model="ir.ui.view">
+            <field name="name">assignment.master.form</field>
+            <field name="model">assignment.master</field>
+            <field name="arch" type="xml">
+                <form string="Assignments Master">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="class_subject_id"/>
+                            </group>
+                            <group>
+                                <field name="academic_year_id"/>
+                                <field name="student_class_id"/>
+                                <field name="class_room_id"/>
+                            </group>
+                        </group>
+                        <group string="Assignment Details">
+                            <group>
+                                <field name="generate_date"/>
+                                <field name="assignment_mark"/>
+                            </group>
+                            <group>
+                                <field name="last_date"/>
+                            </group>
+                            <label for="assignment_task" class="font-weight-bold"/>
+                            <field name="assignment_task"/>
+                            <group></group>
+                            <group>
+                                <field name="teacher_id"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Assigned To">
+                                <field name="assigned_students_ids" nolabel="1" editable="1">
+                                    <tree editable="bottom">
+                                        <field name="student_id" force_save="1"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <!-- Chatter -->
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" groups="base.group_user"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_assignment_master_tree" model="ir.ui.view">
+            <field name="name">assignment.master.tree</field>
+            <field name="model">assignment.master</field>
+            <field name="arch" type="xml">
+                <tree string="School Assignments">
+                    <field name="name"/>
+                    <field name="class_subject_id"/>
+                    <field name="academic_year_id"/>
+                    <field name="student_class_id"/>
+                    <field name="class_room_id"/>
+                    <field name="generate_date"/>
+                    <field name="last_date"/>
+                    <field name="assignment_mark"/>
+                    <field name="teacher_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_view_assignments" model="ir.actions.act_window">
+            <field name="name">Assignment Master</field>
+            <field name="res_model">assignment.master</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo>

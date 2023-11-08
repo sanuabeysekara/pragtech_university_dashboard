@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_student_attendance">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                    <h3><center><strong>Student Attendance Report</strong></center></h3><br/>
+                        <table class="table table-condensed;" style= "border:1px solid black;"  >
+                            <thead>
+                                <th style="border:1px solid black; text-align:center"><strong>Student</strong></th>
+                                <th style="border:1px solid black; text-align:center"><strong>Date</strong></th>
+                                <th style="border:1px solid black; text-align:center"><strong>Academic year</strong></th>
+                                <th style="border:1px solid black; text-align:center"><strong>Class</strong></th>
+                                <th style="border:1px solid black; text-align:center"><strong>class Room</strong></th>
+                                <th style="border:1px solid black; text-align:center"><strong>Session</strong></th>
+                                <th style="border:1px solid black; text-align:center"><strong>Status</strong></th>
+                            </thead>
+                            <tbody> 
+
+                                 <t t-foreach="attendance" t-as="res">
+                                    <tr>
+                                        <td style="border-right:1px solid black;border-bottom:0;" >
+                                            <span t-att-style="style" t-esc="res['name']"/>
+
+                                        </td>
+                                        <td style="border-right:1px solid black;border-bottom:0;" >
+                                            <span t-att-style="style" t-esc="res['date']"/>
+                                        </td>    
+                                          <td style="border-right:1px solid black;border-bottom:0;" >
+                                            <span t-att-style="style" t-esc="res['academic_year']"/>
+                                        </td>    
+                                          <td style="border-right:1px solid black;border-bottom:0;" >
+                                          <span t-att-style="style" t-esc="res['student_class']"/>
+                                        </td>    
+                                          <td style="border-right:1px solid black;border-bottom:0;" >
+                                            <span t-att-style="style" t-esc="res['student_class_room']"/>
+                                        </td>
+                                        <td style="border-right:1px solid black;border-bottom:0;" >
+                                            <span t-att-style="style" t-esc="res['session']"/>
+                                        </td>                                          
+                                        <td style="border-right:1px solid black;border-bottom:0;" >
+                                            <span t-att-style="style" t-esc="res['status']"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                <xpath expr="//div[@class='footer o_standard_footer']" position="replace">
+                    <div class="footer o_standard_footer">
+                        <div class="text-center" style="border-top: 1px solid black;">
+                            <div t-if="report_type == 'pdf'" class="text-muted">
+                                Page:
+                                <span class="page"/>
+                                /
+                                <span class="topage"/>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </t>
+        </t>
+    </template>
+</odoo>

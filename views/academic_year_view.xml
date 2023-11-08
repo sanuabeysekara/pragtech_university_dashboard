@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_academic_year_form" model="ir.ui.view">
+            <field name="name">academic.year.form</field>
+            <field name="model">academic.year</field>
+            <field name="arch" type="xml">
+                <form string="Academic Year">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="academic_semester"/>
+                            </group>
+                            <group>
+                                <field name="academic_start_date"/>
+                                <field name="academic_end_date"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_academic_year_tree" model="ir.ui.view">
+            <field name="name">academic.year.tree</field>
+            <field name="model">academic.year</field>
+            <field name="arch" type="xml">
+                <tree string="Academic Year">
+                    <field name="name"/>
+                    <field name="academic_semester"/>
+                    <field name="academic_start_date"/>
+                    <field name="academic_end_date"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="action_view_academic_year" model="ir.actions.act_window">
+            <field name="name">Academic Year</field>
+            <field name="res_model">academic.year</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="view_id" eval="False"/>
+        </record>
+    </data>
+</odoo>

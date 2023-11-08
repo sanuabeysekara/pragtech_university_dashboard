@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+        <record id="student_attendance_report_tree_view" model="ir.ui.view">
+            <field name="name">student.attendance.report.tree.view</field>
+            <field name="model">student.attendance.report</field>
+            <field name="arch" type="xml">
+                <tree string="Attendance Report" create="false">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="academic_year"/>
+                    <field name="student_class"/>
+                    <field name="student_class_room"/>
+                    <field name="session"/>
+                    <field name="status"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="student_attendance_report_search_view" model="ir.ui.view">
+            <field name="name">student.attendance.report</field>
+            <field name="model">student.attendance.report</field>
+            <field name="arch" type="xml">
+                <search string="Search Attendance Report">
+                    <field name="academic_year" />
+                    <field name="name" />
+                    <filter name="date" string="Date"  context="{'group_by':'date'}"/> 
+                    <filter name="student" string="Student"  context="{'group_by':'name'}"/>
+                    <filter name="class" string="Class"  context="{'group_by':'student_class'}"/>
+                    <filter name="class_section" string="Section"  context="{'group_by':'student_class_room'}"/>
+                    <filter name="academic" string="Academic"  context="{'group_by':'academic_year'}"/> 
+ 
+                </search>
+            </field>
+        </record>
+
+
+        <record id="action_student_attendance_report" model="ir.actions.act_window">
+            <field name="name">Student Attendance Report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">student.attendance.report</field>
+            <field name="view_id" ref="pragtech_university_dashboard.student_attendance_report_tree_view"/>
+            <field name="search_view_id" ref="pragtech_university_dashboard.student_attendance_report_search_view"/>
+            <field name="view_mode">tree</field>
+        </record>
+
+
+        <!-- <menuitem id="student_attendance_report" parent="pragtech_university_dashboard.menu_attendance_root"  name="Student Attendance Report View " 
+            action="pragtech_university_dashboard.action_student_attendance_report" sequence="3"/> -->
+
+</odoo>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Invoice Confirm - Gst Treatment required (country IN) field removed view -->
+
+        <record id="account_move_view_inherit" model="ir.ui.view">
+            <field name="name">account.move.form.inherit.l10n.in.custom</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="l10n_in.invoice_form_inherit_l10n_in"/>
+            <field name="arch" type="xml">
+                <field name="l10n_in_gst_treatment" position="replace">
+                    <field name="l10n_in_gst_treatment" required="0"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="view_fees_management_form" model="ir.ui.view">
+            <field name="name">fees.management.form</field>
+            <field name="model">fees.management</field>
+            <field name="arch" type="xml">
+                <form string="Fees Manage">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="academic_year_id"/>
+                                <field name="student_class_id"/>
+                                <field name="class_room_id"/>
+                            </group>
+                            <group>
+                                <field name="student_id"/>
+                            </group>
+                        </group>
+                        <notebook>
+                         <page string="Fees Amount">
+                            <field name="student_fee_ids" nolabel="1">
+                                <tree string="Fees Payment" editable="bottom">
+                                    <field name="fee_id" domain="[('detailed_type', '=', 'service')]"
+                                           context="{'default_detailed_type': 'service'}"/>
+                                    <field name="fee_amount"/>
+                                    <button string="Create Invoice"
+                                            type="object" name="action_inv_create"
+                                            class="oe_highlight"
+                                            state="draft"
+                                            attrs="{'invisible': [('state', 'in', ('draft', 'posted', 'cancel'))]}"
+                                    />
+
+                                    <button string="Invoice"
+                                            type="object"
+                                            name="action_inv_view" class="oe_highlight"
+                                            state="invoice"
+                                            attrs="{'invisible': [('state', 'not in', ('draft', 'posted', 'cancel'))]}"
+                                    />
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_fees_management_tree" model="ir.ui.view">
+            <field name="name">fees.management.tree</field>
+            <field name="model">fees.management</field>
+            <field name="arch" type="xml">
+                <tree string="Fees Manage">
+                    <field name="student_id"/>
+                    <field name="academic_year_id"/>
+                    <field name="student_class_id"/>
+                    <field name="class_room_id"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="action_view_fees_payment" model="ir.actions.act_window">
+            <field name="name">Fees Manage</field>
+            <field name="res_model">fees.management</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="view_id" eval="False"/>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_students_attendance_form" model="ir.ui.view">
+            <field name="name">students.attendance.form</field>
+            <field name="model">students.attendance</field>
+            <field name="arch" type="xml">
+                <form string="Students Attendance">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="day_date"/>
+                                <field name="half_day"/>
+                            </group>
+                            <group>
+                                <field name="academic_year_id"/>
+                                <field name="student_class_id"/>
+                                <field name="classroom_id"/>
+                                <button name="action_fill_student" string="Autofill Students" type="object" help="Fill Student Details By click" class="oe_highlight" />
+
+
+                                <!-- <field name="is_clicked" invisible="1"/> -->
+                                <!-- <button name="action_fill_student" string="Autofill Students" type="object" help="Fill Student Details By click" class="oe_highlight" 
+                                            attrs="{'invisible': [('is_clicked', '=', True)]}" />
+ -->
+                            </group>
+                        </group>
+                        <notebook>
+                         <page string="Student Attendances">
+                            <field name="student_attendance_ids" nolabel="1">
+                                <tree string="Student Attendance" editable="bottom">
+                                    <field name="attendance_id" invisible="1"/>
+                                    <field name="student_id"/>
+                                    <field name="presented"/>
+                                    <field name="absented"/>
+                                    <field name="status" />
+                                    <field name="notes"/>
+                                </tree>
+                            </field>
+                        </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_students_attendance_tree" model="ir.ui.view">
+            <field name="name">students.attendance.tree</field>
+            <field name="model">students.attendance</field>
+            <field name="arch" type="xml">
+                <tree string="Students Attendance">
+                    <field name="day_date"/>
+                    <field name="academic_year_id"/>
+                    <field name="student_class_id"/>
+                    <field name="classroom_id"/>
+                    <field name="half_day"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_view_students_attendance" model="ir.actions.act_window">
+            <field name="name">Students Attendance</field>
+            <field name="res_model">students.attendance</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo>

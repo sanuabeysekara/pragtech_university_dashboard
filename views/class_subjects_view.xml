@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_class_subjects_tree" model="ir.ui.view">
+            <field name="name">students.class.tree</field>
+            <field name="model">students.class</field>
+            <field name="arch" type="xml">
+                <tree string="Subjects">
+                    <field name="name"/>
+                    <field name="class_subject_ids" widget="many2many_tags"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_class_subjects_form" model="ir.ui.view">
+            <field name="name">students.class.form</field>
+            <field name="model">students.class</field>
+            <field name="arch" type="xml">
+                <form string="Subjects">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Subjects">
+                                <field name="class_subject_ids" nolabel="1">
+                                    <tree string="Subjects" editable="bottom">
+                                        <field name="name"/>
+                                        <field name="sub_category"/>
+                                        <field name="sub_exam_type"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_view_subjects" model="ir.actions.act_window">
+            <field name="name">Classes And Subjects</field>
+            <field name="res_model">students.class</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Add Subject
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

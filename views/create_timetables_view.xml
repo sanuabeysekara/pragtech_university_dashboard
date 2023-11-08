@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_create_timetables_form" model="ir.ui.view">
+            <field name="name">create.timetables.form</field>
+            <field name="model">create.timetables</field>
+            <field name="arch" type="xml">
+                <form string="Timetables">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="timetable_start_date"/>
+                                <field name="timetable_end_date"/>
+                            </group>
+                            <group>
+                                <field name="academic_year_id"/>
+                                <field name="student_class_id"/>
+                                <field name="classroom_id"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Monday" name="monday_day_timetable">
+                                <field name="monday_line_ids" nolabel="1">
+                                    <tree editable="bottom">
+                                        <field name="timetable_monday_id" invisible="1"/>
+                                        <field name="period_timing_id" force_save="1"/>
+                                        <field name="class_subject_id" force_save="1"/>
+<!--                                        <field name="teacher_id" force_save="1"/>-->
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Tuesday" name="tuesday_day_timetable">
+                                <field name="tuesday_line_ids" nolabel="1">
+                                    <tree editable="bottom">
+                                        <field name="timetable_tuesday_id" invisible="1"/>
+                                        <field name="period_timing_id"/>
+                                        <field name="class_subject_id"/>
+<!--                                        <field name="teacher_id"/>-->
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Wednesday" name="wednesday_day_timetable1">
+                                <field name="wednesday_line_ids" nolabel="1">
+                                    <tree editable="bottom">
+                                        <field name="timetable_wednesday_id" invisible="1"/>
+                                        <field name="period_timing_id"/>
+                                        <field name="class_subject_id"/>
+<!--                                        <field name="teacher_id"/>-->
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Thursday" name="thursday_day_timetable">
+                                <field name="thursday_line_ids" nolabel="1">
+                                    <tree editable="bottom">
+                                        <field name="timetable_thursday_id" invisible="1"/>
+                                        <field name="period_timing_id"/>
+                                        <field name="class_subject_id"/>
+<!--                                        <field name="teacher_id"/>-->
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Friday" name="friday_day_timetable">
+                                <field name="friday_line_ids" nolabel="1">
+                                    <tree editable="bottom">
+                                        <field name="timetable_friday_id" invisible="1"/>
+                                        <field name="period_timing_id"/>
+                                        <field name="class_subject_id"/>
+<!--                                        <field name="teacher_id"/>-->
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Saturday" name="saturday_day_timetable">
+                                <field name="saturday_line_ids" nolabel="1">
+                                    <tree editable="bottom">
+                                        <field name="timetable_saturday_id" invisible="1"/>
+                                        <field name="period_timing_id"/>
+                                        <field name="class_subject_id"/>
+<!--                                        <field name="teacher_id"/>-->
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Sunday" name="sunday_day_timetable">
+                                <field name="sunday_line_ids" nolabel="1">
+                                    <tree editable="bottom">
+                                        <field name="timetable_sunday_id" invisible="1"/>
+                                        <field name="period_timing_id"/>
+                                        <field name="class_subject_id"/>
+<!--                                        <field name="teacher_id"/>-->
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_create_timetables_tree" model="ir.ui.view">
+            <field name="name">create.timetables.tree</field>
+            <field name="model">create.timetables</field>
+            <field name="arch" type="xml">
+                <tree string="Create Timetables">
+                    <field name="name"/>
+                    <field name="academic_year_id"/>
+                    <field name="student_class_id"/>
+                    <field name="classroom_id"/>
+                    <field name="timetable_start_date"/>
+                    <field name="timetable_end_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_view_create_timetable" model="ir.actions.act_window">
+            <field name="name">Day Timetable</field>
+            <field name="res_model">create.timetables</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo>
